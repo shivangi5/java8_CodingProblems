@@ -1,0 +1,23 @@
+        String s1= "StringClassTest";
+        String s2= "StringClassTest56yh";
+       
+    // If the lengths of the two strings are not equal, they cannot be anagrams
+    if (s1.length() != s2.length()) {
+        return false;
+    }
+    
+    
+    // Convert the two strings to lowercase and store the character counts in a map
+        Map<Character, Long> charCounts1 = s1.toLowerCase().chars()
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.groupingBy(identity(), Collectors.counting()));
+        Map<Character, Long> charCounts2 = s2.toLowerCase().chars()
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.groupingBy(identity(), Collectors.counting()));
+        if(charCounts1.equals(charCounts2)){
+            System.out.println("anagram");
+        }else {
+            System.out.println("not anagram");
+        }
+
+
