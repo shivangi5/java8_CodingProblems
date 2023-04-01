@@ -1,0 +1,38 @@
+  String javaString = "thisAVariable";
+        String ccString = getCCString(javaString);
+        
+    String ccStringCase = "this_a_variable";
+    String javaStringCase = getCCJavaString(ccStringCase);
+        System.out.println("javaStringCase---------"+ javaStringCase);
+        System.out.println("ccString---------"+ ccString);
+
+    }
+
+    private static String getCCJavaString(String ccStringCase) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i = 0; i <= ccStringCase.length()-1; i++){
+            Character ch = ccStringCase.charAt(i);
+            if(ch == '_'){
+                stringBuilder.append(Character.toUpperCase(ccStringCase.charAt(i+1)));
+                i++;
+            }else{
+                stringBuilder.append(ch);
+            }
+        }
+        return stringBuilder.toString();
+    }
+//thisAVariable  --> this_a_variable
+    private static String getCCString(String javaString) {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i<= javaString.length()-1; i++){
+            Character ch = javaString.charAt(i);
+            if(Character.toUpperCase(ch) == ch){
+                sb.append("_");
+                sb.append(Character.toLowerCase(ch));
+            }else {
+                sb.append(ch);
+            }
+        }
+        return sb.toString();
+    }
+}
