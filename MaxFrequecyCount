@@ -1,0 +1,23 @@
+/**
+     * List of number = 12,10,13,7,10,12,12,13,10
+     * Any number which have frequency more
+     * Highest number of occurence 12 10
+     * @param args
+     */
+     
+     //Taking inputs
+     List<Integer> arrayList = Arrays.asList(12,10,13,7,10,12,12,13,10);
+     
+     //Count frequecy more than 1
+     Map<Integer, Long> ar = arrayList.stream().filter(s->Collections.frequency(arrayList,s)>1 )
+     .collect(Collectors.groupingBy(s-> s, Collectors.counting()));
+       
+      //Count max value 
+      Long max = Collections.max(ar.values());
+
+//iterate loop and print value
+List<Integer> i = ar.entrySet().stream().filter(key -> key.getValue().equals(max))
+.map(Map.Entry::getKey).collect(Collectors.toList());
+
+System.out.println("+++++"+ i);
+        System.out.println("arr"+ ar);
