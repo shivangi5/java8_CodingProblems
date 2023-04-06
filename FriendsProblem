@@ -1,0 +1,69 @@
+Can Kelly solve enough code challenges to catch up with Sam?
+
+Sam and Kelly are programming buddies. Kelly resolves to practice more as Sam is ahead initially. They each solve a number of problems daily. Find the minimum number of days for Kelly to have solved more problems than Sam. If Kelly cannot surpass return -1.
+
+Example
+
+samDaily = 3
+
+kellyDaily = 5
+
+difference = 5
+
+Initially, Sam has solved difference problems more than Kelly. Each day, they solve samDaily and kellyDaily problems each.
+
+Day 1: samSolved = difference + samDaily = 5 + 3 = 8
+
+_            kellySolved_ = _kellyDaily = _5
+
+Day 2: samSolved = 8 + 3 = 11
+
+_            kellySolved_ = 5 + 5 = 10
+
+Day 3: samSolved = 11 + 3 = 14
+
+_            kellySolved_ = 10 + 5 = 15
+
+Sam is 5 problems ahead of Kelly and they solve 3 and 5 problems a day. Sam will be ahead by only 3 after the first day, 1 after the second, and Kelly will pass Sam on day 3.
+
+**Function Description **
+
+Complete the function minNum in the editor below.
+
+minNum has the following parameter(s):
+
+    samDaily:  Number of problems Sam solves in a day
+
+    kellyDaily:  Number of problems Kelly solves in a day
+
+    difference_:_  Number of problems Sam is ahead to begin
+
+Return
+
+    _int: _the minimum number of days needed by Kelly to exceed Sam, or -1 if it is impossible
+
+Constraints
+
+1 ≤ samDaily, kellyDaily ≤ 100
+0 ≤ difference ≤ 100
+
+public static int minNum(int samDaily, int kellyDaily, int difference) {
+    int day = 0;
+    int samSolved = difference;
+    int kellySolved = 0;
+
+    while (samSolved >= kellySolved) {
+        day++;
+        samSolved += samDaily;
+        kellySolved += kellyDaily;
+
+        if (day > 1000000) { // Avoid infinite loops
+            return -1;
+        }
+    }
+
+    return day;
+}
+
+
+
