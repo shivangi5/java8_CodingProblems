@@ -1,0 +1,66 @@
+There is an array of integers, arr, and an integer value X
+. For each element in another array of integers, query_values, return the 1-based index in arr of the query_values[i] occurrence of X
+. If X
+ does not occur query_values[i] times, return -1 for that query.
+
+Example
+
+arr = [1, 2, 20, 8, 8, 1, 2, 5, 8, 0]
+
+X=8
+query_values = [100, 4, 2]
+
+There is no 100th or 4th instance of X=8
+ in arr. The 2nd occurrence is at index 5. Return [-1,-1, 5].
+ 
+ -----------------
+ //Solution
+ 
+ import java.util.*;
+
+public class Solution {
+    public static int[] findOccurrences(int[] arr, int X, int[] query_values) {
+        // Count the number of occurrences of X in arr
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == X) {
+                count++;
+            }
+        }
+        
+        // Store the indices of each occurrence of X in a list
+        List<Integer> indices = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == X) {
+                indices.add(i);
+            }
+        }
+        
+        // Process each query value and return the results
+        int[] results = new int[query_values.length];
+        for (int i = 0; i < query_values.length; i++) {
+            int query = query_values[i];
+            if (query > count) {
+                results[i] = -1;
+            } else {
+                results[i] = indices.get(query - 1) + 1;
+            }
+        }
+        return results;
+    }
+    
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 20, 8, 8, 1, 2, 5, 8, 0};
+        int X = 8;
+        int[] query_values = {100, 4, 2};
+        int[] result = findOccurrences(arr, X, query_values);
+        System.out.println(Arrays.toString(result));  // [-1, -1, 5]
+    }
+}
+
+The findOccurrences method takes three arguments: the input array arr, the integer value X, and the array of query values query_values. It returns an array of integers representing the index of each query value's occurrence of X in arr, or -1 if X does not occur that many times in arr.
+
+The method first counts the number of occurrences of X in arr using a for loop. It then stores the index of each occurrence of X in a list using another for loop.
+
+Finally, the method processes each query value in query_values using a third for loop. If the query value is greater than the number of occurrences of X, the method sets the corresponding element of the result array to -1. Otherwise, it retrieves the index of the query value's occurrence of X from the list of indices and sets the corresponding element of the result array to that index plus 1 (to account for 1-based indexing). The method returns the result array.
+
