@@ -1,0 +1,22 @@
+Find largest distance between two occurence of character y in string x java
+I/p my name is granar
+I/p a
+O/p 7
+
+public static int largestDistanceBetweenY(String x, char c) {
+    int maxDist = 0;
+    int lastIndex = -1;
+    for (int i = 0; i < x.length(); i++) {
+        if (x.charAt(i) == c) {
+            int dist = i - lastIndex;
+            if (dist > maxDist) {
+                maxDist = dist;
+            }
+            lastIndex = i;
+        }
+    }
+    if (maxDist == 0) {
+        return -1;
+    }
+    return maxDist;
+}
